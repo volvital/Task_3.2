@@ -14,9 +14,13 @@ const addPersonItem = (person) => {
     `;
     $ul.appendChild($li);
 };
-// функция удаления блока спинера
-function interrupt() {
-    return $visible.parentNode.removeChild($visible);
+
+function invisibleSpinner(){
+    return $visible.setAttribute("class", "invisible");
+}
+
+function visibleSpinner() {
+    return $visible.setAttribute("class", "visible");
 }
 
 const path = 'https://swapi.dev/api/people/?page=1'
@@ -26,9 +30,7 @@ function loadingPage() {
             res.data.results.forEach(person => {
                 addPersonItem(person);
             });
-        });
+        }).then(invisibleSpinner);
 }
-// Для наглядности задержка времени
-setTimeout(loadingPage, 300);
-setTimeout(interrupt, 1000);
 
+loadingPage()
