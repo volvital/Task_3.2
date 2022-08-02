@@ -23,8 +23,12 @@ function visibleSpinner() {
     return $visible.setAttribute("class", "visible");
 }
 
-const path = 'https://swapi.dev/api/people/?page=1'
-function loadingPage() {
+const path1 = 'https://swapi.dev/api/people/?page=1';
+const path2 = 'https://swapi.dev/api/people/?page=2';
+const path3 = 'https://swapi.dev/api/people/?page=3';
+
+function loadingPage(path) {
+    visibleSpinner();
     axios.get(path)
         .then((res) => {
             res.data.results.forEach(person => {
@@ -33,4 +37,5 @@ function loadingPage() {
         }).then(invisibleSpinner);
 }
 
-loadingPage()
+
+
