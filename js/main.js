@@ -28,6 +28,11 @@ const path2 = 'https://swapi.dev/api/people/?page=2';
 const path3 = 'https://swapi.dev/api/people/?page=3';
 
 function loadingPage(path) {
+if($ul.hasChildNodes()){
+    while ($ul.firstChild) {
+        $ul.removeChild($ul.firstChild);
+    }
+}
     visibleSpinner();
     axios.get(path)
         .then((res) => {
@@ -37,5 +42,4 @@ function loadingPage(path) {
         }).then(invisibleSpinner);
 }
 
-
-
+loadingPage(path1);
